@@ -27,7 +27,7 @@ const BudgetForm = () => {
               htmlFor="budget"
               className="form-label fs-4 text-uppercase fw-medium"
             >
-              Definir presupuesto
+              Definir presupuesto <span className="text-danger">*</span>
             </label>
             <input
               id="budgetID"

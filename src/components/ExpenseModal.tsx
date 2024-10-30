@@ -30,7 +30,9 @@ export default function ExpenseModal() {
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title text-uppercase">Registrar un nuevo gasto</h5>
+                <h5 className="modal-title text-uppercase">
+                  Registrar un nuevo gasto
+                </h5>
                 <button
                   type="button"
                   className="btn-close"
@@ -39,19 +41,7 @@ export default function ExpenseModal() {
                 ></button>
               </div>
               <div className="modal-body">
-                <ExpenseForm/>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary-custom"
-                  onClick={() => dispatch({ type: "hide-modal" })}
-                >
-                  Cancelar
-                </button>
-                <button type="button" className="btn btn-primary-custom">
-                  Agregar
-                </button>
+                <ExpenseForm />
               </div>
             </div>
           </div>
