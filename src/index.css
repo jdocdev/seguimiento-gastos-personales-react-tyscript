@@ -8,12 +8,29 @@ body {
 }
 
 .btn-success-custom {
-  background-color: #7fc682; 
+  background-color: #7fc682;
   border-color: #7fc682;
+  color: #fff;
+  font-weight: 700 !important;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .btn-success-custom:hover {
-  background-color: #66bb6a; 
+  background-color: #66bb6a;
+  color: #fff;
+}
+
+.btn-danger-custom {
+  background-color: #ed524f;
+  border-color: #ed524f;
+  color: #fff;
+  font-weight: 700 !important;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-danger-custom:hover {
+  background-color: #e14e4b;
+  color: #fff;
 }

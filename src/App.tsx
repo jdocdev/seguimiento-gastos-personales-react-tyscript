@@ -1,7 +1,13 @@
+import { useMemo } from "react";
 import BudgetForm from "./components/BudgetForm";
 import Logo from "/favicon.png";
+import { useBudget } from "./hooks/useBudget";
+import BudgetTracker from "./components/BudgetTracker";
 
 function App() {
+  const { state } = useBudget();
+
+  const isValidBudget = useMemo(() => state.budget > 0, [state.budget]);
 
   return (
     <>
@@ -14,7 +20,9 @@ function App() {
               width="50"
               className="d-inline-block align-text-top"
             />
-            <span className="fs-3 text-uppercase fw-bold">Planificador de gastos personales</span>
+            <span className="fs-3 text-uppercase fw-bold">
+              Planificador de gastos personales
+            </span>
             <img
               src={Logo}
               alt="Logo"
@@ -26,7 +34,7 @@ function App() {
       </header>
 
       <div className="container mt-5 d-flex justify-content-center">
-        <BudgetForm />
+        {isValidBudget ? <BudgetTracker /> : <BudgetForm />}
       </div>
     </>
   );
