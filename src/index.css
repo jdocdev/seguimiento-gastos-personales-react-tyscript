@@ -1,2 +1,19 @@
-@import 'bootstrap-icons/font/bootstrap-icons.css';
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.btn-success-custom {
+  background-color: #7fc682; 
+  border-color: #7fc682;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-success-custom:hover {
+  background-color: #66bb6a; 
+}

@@ -2,6 +2,7 @@ import BudgetForm from "./components/BudgetForm";
 import Logo from "/favicon.png";
 
 function App() {
+
   return (
     <>
       <header className="navbar bg-light shadow-sm">
