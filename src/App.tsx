@@ -3,6 +3,7 @@ import BudgetForm from "./components/BudgetForm";
 import Logo from "/favicon.png";
 import { useBudget } from "./hooks/useBudget";
 import BudgetTracker from "./components/BudgetTracker";
+import ExpenseModal from "./components/ExpenseModal";
 
 function App() {
   const { state } = useBudget();
@@ -36,6 +37,13 @@ function App() {
       <div className="container mt-5 d-flex justify-content-center">
         {isValidBudget ? <BudgetTracker /> : <BudgetForm />}
       </div>
+
+      {isValidBudget && (
+        <div className="container mt-5 d-flex justify-content-center">
+          <ExpenseModal/>
+        </div>
+        )}
+      
     </>
   );
 }

@@ -34,3 +34,31 @@ body {
   background-color: #e14e4b;
   color: #fff;
 }
+
+.btn-primary-custom {
+  background-color: #64b5f6;
+  border-color: #64b5f6;
+  color: #fff;
+  font-weight: 700 !important;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary-custom:hover {
+  background-color: #42a5f5;
+  color: #fff;
+}
+
+.btn-secondary-custom {
+  background-color: #aaafb5;
+  border-color: #aaafb5;
+  color: #fff;
+  font-weight: 700 !important;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-secondary-custom:hover {
+  background-color: #9fa4aa;
+  color: #fff;
+}
