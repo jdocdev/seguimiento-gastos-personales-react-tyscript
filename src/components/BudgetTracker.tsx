@@ -1,14 +1,22 @@
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 import { useMemo } from "react";
 import { useBudget } from "../hooks/useBudget";
 import AmountDisplay from "./AmountDisplay";
-import Grafico from "/favicon.png";
 
 const BudgetTracker = () => {
-
-  const {state} = useBudget()
-  const totalExpenses = useMemo(()=>state.expenses.reduce((total,expense)=>expense.expenseAmount + total,0),[state.expenses])
-  const remainingBudget = state.budget-totalExpenses
-
+  const { state, dispatch } = useBudget();
+  const totalExpenses = useMemo(
+    () =>
+      state.expenses.reduce(
+        (total, expense) => expense.expenseAmount + total,
+        0
+      ),
+    [state.expenses]
+  );
+  const remainingBudget = state.budget - totalExpenses;
+  const percentage = (totalExpenses / state.budget) * 100 || 0;
+  const pathColor = percentage >= 80 ? "#e14e4b" : "#66bb6a";
   return (
     <div className="card shadow-sm" style={{ width: "80rem" }}>
       <div className="card-header">
@@ -18,7 +26,16 @@ const BudgetTracker = () => {
       </div>
       <div className="card-body d-flex gap-3 justify-content-center align-items-center">
         <div className="d-flex justify-content-center py-3">
-          <img src={Grafico} alt="Ejemplo de grafica" width="200" />
+          <CircularProgressbar
+            value={percentage}
+            styles={buildStyles({
+              pathColor: pathColor,
+              trailColor: "#42a5f5",
+              textSize: 8,
+              textColor: pathColor,
+            })}
+            text={`${percentage}% Gastado`}
+          />
         </div>
         <div className="d-flex flex-column align-items-center">
           <AmountDisplay label="Presupuesto" amount={state.budget} />
@@ -27,7 +44,10 @@ const BudgetTracker = () => {
         </div>
       </div>
       <div className="card-footer text-end">
-        <button className="btn btn-sm btn-danger-custom text-uppercase fw-medium">
+        <button
+          className="btn btn-sm btn-danger-custom text-uppercase fw-medium"
+          onClick={() => dispatch({ type: "reset-app" })}
+        >
           Reiniciar App
         </button>
       </div>
