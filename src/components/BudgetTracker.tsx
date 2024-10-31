@@ -6,7 +6,7 @@ const BudgetTracker = () => {
     <div className="card shadow-sm" style={{ width: "40rem" }}>
       <div className="card-header d-flex justify-content-between align-items-center">
         <span className="fs-4 text-uppercase fw-medium">
-          Seguimiento de gastos
+          Análisis del Presupuesto
         </span>
         <button className="btn btn-sm btn-danger-custom text-uppercase fw-medium">
           Reiniciar App

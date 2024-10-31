@@ -4,6 +4,7 @@ import Logo from "/favicon.png";
 import { useBudget } from "./hooks/useBudget";
 import BudgetTracker from "./components/BudgetTracker";
 import ExpenseModal from "./components/ExpenseModal";
+import ExpenseList from "./components/ExpenseList";
 
 function App() {
   const { state } = useBudget();
@@ -41,6 +42,7 @@ function App() {
       {isValidBudget && (
         <div className="container mt-5 d-flex justify-content-center">
           <ExpenseModal/>
+          <ExpenseList/>
         </div>
         )}
       
