@@ -18,7 +18,7 @@ export type BudgetState = {
 
 const initialBudget = () : number => {
     const localStorageBudget = localStorage.getItem('budget')
-    return localStorageBudget ? Number(localStorageBudget) : 100000
+    return localStorageBudget ? Number(localStorageBudget) : 1000000
 }
 
 const localStorageExpenses = (): Expense[] => {

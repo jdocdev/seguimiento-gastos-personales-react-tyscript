@@ -1,7 +1,14 @@
+import { useMemo } from "react";
+import { useBudget } from "../hooks/useBudget";
 import AmountDisplay from "./AmountDisplay";
 import Grafico from "/favicon.png";
 
 const BudgetTracker = () => {
+
+  const {state} = useBudget()
+  const totalExpenses = useMemo(()=>state.expenses.reduce((total,expense)=>expense.expenseAmount + total,0),[state.expenses])
+  const remainingBudget = state.budget-totalExpenses
+
   return (
     <div className="card shadow-sm" style={{ width: "80rem" }}>
       <div className="card-header">
@@ -14,9 +21,9 @@ const BudgetTracker = () => {
           <img src={Grafico} alt="Ejemplo de grafica" width="200" />
         </div>
         <div className="d-flex flex-column align-items-center">
-          <AmountDisplay label="Presupuesto" amount={50000} />
-          <AmountDisplay label="Disponible" amount={30000} />
-          <AmountDisplay label="Gastado" amount={20000} />
+          <AmountDisplay label="Presupuesto" amount={state.budget} />
+          <AmountDisplay label="Disponible" amount={remainingBudget} />
+          <AmountDisplay label="Gastado" amount={totalExpenses} />
         </div>
       </div>
       <div className="card-footer text-end">
