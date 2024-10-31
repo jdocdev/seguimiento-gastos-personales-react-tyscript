@@ -8,7 +8,7 @@ export default function ExpenseModal() {
     <>
       <div
         className="position-fixed d-flex align-items-center justify-content-center"
-        style={{ right: "1.25rem", bottom: "1.25rem" }}
+        style={{ right: "1.25rem", bottom: "1.25rem", zIndex:"99" }}
       >
         <button
           type="button"

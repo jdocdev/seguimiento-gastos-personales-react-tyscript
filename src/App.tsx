@@ -22,7 +22,7 @@ function App() {
               width="50"
               className="d-inline-block align-text-top"
             />
-            <span className="fs-3 text-uppercase fw-bold">
+            <span className="fs-3 text-uppercase fw-bold text-center text-wrap">
               Planificador de gastos personales
             </span>
             <img
