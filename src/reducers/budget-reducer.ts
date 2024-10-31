@@ -21,19 +21,26 @@ export type BudgetState = {
 
 const initialBudget = () : number => {
     const localStorageBudget = localStorage.getItem('budget')
-    return localStorageBudget ? Number(localStorageBudget) : 1000000
+    return localStorageBudget ? Number(localStorageBudget) : 100000
 }
 
 const localStorageExpenses = (): Expense[] => {
     const localStorageExpenses = localStorage.getItem('expenses');
     if (localStorageExpenses) {
-        const expenses: Expense[] = JSON.parse(localStorageExpenses);
-        return expenses.map((expense: Expense) => ({
-            ...expense,
-            expenseDate: new Date(expense.expenseDate),
-        }));
+        try {
+            const expenses: Expense[] = JSON.parse(localStorageExpenses);
+            if (Array.isArray(expenses)) {
+                return expenses.map((expense: Expense) => ({
+                    ...expense,
+                    expenseDate: new Date(expense.expenseDate),
+                }));
+            }
+        } catch (error) {
+            console.error('Error al parsear expenses:', error);
+            return [];
+        }
     }
-    return [];
+    return []; 
 };
 
 export const initialState : BudgetState = {
