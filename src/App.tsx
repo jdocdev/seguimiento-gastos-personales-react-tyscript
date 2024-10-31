@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import BudgetForm from "./components/BudgetForm";
 import Logo from "/favicon.png";
 import { useBudget } from "./hooks/useBudget";
@@ -10,6 +10,11 @@ function App() {
   const { state } = useBudget();
 
   const isValidBudget = useMemo(() => state.budget > 0, [state.budget]);
+
+  useEffect(() => {
+    localStorage.setItem("budget", state.budget.toString());
+    localStorage.setItem("expenses", JSON.stringify(state.expenses));
+  }, [state]);
 
   return (
     <>
@@ -41,11 +46,10 @@ function App() {
 
       {isValidBudget && (
         <div className="container mt-5 d-flex justify-content-center">
-          <ExpenseModal/>
-          <ExpenseList/>
+          <ExpenseModal />
+          <ExpenseList />
         </div>
-        )}
-      
+      )}
     </>
   );
 }
