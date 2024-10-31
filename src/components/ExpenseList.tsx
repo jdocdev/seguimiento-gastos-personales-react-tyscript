@@ -6,8 +6,6 @@ import { categories } from "../data/categories";
 const ExpenseList = () => {
   const { state, dispatch } = useBudget();
 
-  const isEmpty = useMemo(() => state.expenses.length === 0, [state.expenses]);
-
   const categoryLookup: { [key: string]: { name: string; icon: string } } =
     useMemo(
       () =>
@@ -33,6 +31,17 @@ const ExpenseList = () => {
       console.log("Eliminación cancelada");
     }
   };
+
+  const filteredExpense = state.currentCategory
+    ? state.expenses.filter(
+        (expense) => expense.expenseCategory === state.currentCategory
+      )
+    : state.expenses;
+
+  const isEmpty = useMemo(
+    () => filteredExpense.length === 0,
+    [filteredExpense]
+  );
 
   return (
     <>
@@ -64,7 +73,7 @@ const ExpenseList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {state.expenses.map((expense) => {
+                  {filteredExpense.map((expense) => {
                     const category = categoryLookup[expense.expenseCategory];
                     return (
                       <tr key={expense.id}>
