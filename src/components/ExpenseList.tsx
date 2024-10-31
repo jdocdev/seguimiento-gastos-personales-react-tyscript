@@ -19,12 +19,14 @@ const ExpenseList = () => {
     );
 
   const handleEdit = (id: string) => {
-    console.log("Edit expense with ID:", id);
+    dispatch({ type: "get-expense-by-id", payload: { id } });
   };
 
   const handleDelete = (id: string) => {
-    const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este gasto?");
-  
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que deseas eliminar este gasto?"
+    );
+
     if (confirmDelete) {
       dispatch({ type: "remove-expense", payload: { id } });
     } else {

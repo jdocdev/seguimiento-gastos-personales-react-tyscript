@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DraftExpense } from "../types";
 import { categories } from "../data/categories";
 import { useBudget } from "../hooks/useBudget";
 import ErrorMessage from "./ErrorMessage";
 
 const ExpenseForm = () => {
-  const { dispatch } = useBudget();
+  const { dispatch, state } = useBudget();
 
   const [expense, setExpense] = useState<DraftExpense>({
     expenseAmount: 0,
@@ -15,6 +15,15 @@ const ExpenseForm = () => {
   });
 
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (state.editingId) {
+      const editingExpese = state.expenses.filter(
+        (currentExpense) => currentExpense.id === state.editingId
+      )[0];
+      setExpense(editingExpese);
+    }
+  }, [state.editingId]);
 
   const handleChange = (
     evento:
@@ -45,7 +54,14 @@ const ExpenseForm = () => {
       return;
     }
 
-    dispatch({ type: "add-expense", payload: { expense } });
+    if (state.editingId) {
+      dispatch({
+        type: "update-expense",
+        payload: { expense: { id: state.editingId, ...expense } },
+      });
+    } else {
+      dispatch({ type: "add-expense", payload: { expense } });
+    }
 
     setExpense({
       expenseAmount: 0,
@@ -132,7 +148,7 @@ const ExpenseForm = () => {
         </button>
         <input
           type="submit"
-          value={"Guardar"}
+          value={state.editingId ? 'Guardar cambios' : 'Registrar gasto'}
           className="btn btn-primary-custom"
         />
       </div>

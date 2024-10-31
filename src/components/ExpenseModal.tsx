@@ -31,7 +31,7 @@ export default function ExpenseModal() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title text-uppercase">
-                  Registrar un nuevo gasto
+                  {state.editingId ? 'Editar gasto' : 'Registrar nuevo gasto'}
                 </h5>
                 <button
                   type="button"
