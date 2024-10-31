@@ -45,7 +45,14 @@ const ExpenseForm = () => {
       return;
     }
 
-    console.log("funciona");
+    dispatch({ type: "add-expense", payload: { expense } });
+
+    setExpense({
+      expenseAmount: 0,
+      expenseCategory: "",
+      expenseDate: new Date(),
+      expenseDescription: "",
+    });
   };
 
   return (
